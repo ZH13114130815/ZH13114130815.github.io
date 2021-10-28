@@ -1,0 +1,256 @@
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+		<title>爱心树</title>
+		
+ <head>
+<meta name="viewport" content="target-densitydpi=device-dpi, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+</head>
+        <link type="text/css" rel="stylesheet" href="./default.css">
+		<script type="text/javascript" src="./jquery.min.js"></script>
+		<script type="text/javascript" src="./jscex.min.js"></script>
+		<script type="text/javascript" src="./jscex-parser.js"></script>
+		<script type="text/javascript" src="./jscex-jit.js"></script>
+		<script type="text/javascript" src="./jscex-builderbase.min.js"></script>
+		<script type="text/javascript" src="./jscex-async.min.js"></script>
+		<script type="text/javascript" src="./jscex-async-powerpack.min.js"></script>
+		<script type="text/javascript" src="./functions.js" charset="utf-8"></script>
+		<script type="text/javascript" src="./love.js" charset="utf-8"></script>
+	    <style type="text/css">
+<!--
+.STYLE1 {color: #666666}
+-->
+        </style>
+</head>
+    <body>
+<h1><marquee direction=down><div align="center" class="des"> <font color=#66ff00>向右下滑点击爱心<font color=#ff0000>♥</font></font></div>
+	</marquee> 
+</h1>
+<style type="text/css">
+<!--
+body {
+	background-color: #000000;
+}
+-->
+</style>
+        <div id="main">
+            <div id="error">本页面采用HTML5编辑，目前您的浏览器无法显示，请联系作者帮助！()修改，或者下载其他游览器的最新版本。</div>
+            <div id="wrap">
+                <div id="text">
+			        <div id="code">
+<h3>
+ 
+			        	<span class="say"><font color="red">和你在一起的两个月<p> </p></span></font>
+						
+                        <span class="say"><font color="#ec5c00">有很多巧合</span><br>
+</font>
+
+<span class="say"><font color="#ec5c00">有很多缘分</span><br>
+</font>
+<span class="say"><font color="#ec5c00">我想把它们永远保留下来</span><br>
+</font>
+						
+</h2>
+			        </div>
+                </div>
+            <div id="clock-box">
+            
+              </div>
+                <canvas id="canvas" width="800" height="180"></canvas>
+            </div>
+            
+        </div>
+    
+    <script>
+    </script>
+
+
+    <script>
+    (function(){
+        var canvas = $('#canvas');
+		
+        if (!canvas[0].getContext) {
+            $("#error").show();
+            return false;
+        }
+
+        var width = canvas.width();
+        var height = canvas.height();
+        
+        canvas.attr("width", width);
+        canvas.attr("height", height);
+
+        var opts = {
+            seed: {
+                x: width / 2 - 20,
+                color: "rgb(190, 26, 37)",
+                scale: 2
+            },
+            branch: [
+                [535, 680, 570, 250, 500, 200, 30, 100, [
+                    [540, 500, 455, 417, 340, 400, 13, 100, [
+                        [450, 435, 434, 430, 394, 395, 2, 40]
+                    ]],
+                    [550, 445, 600, 356, 680, 345, 12, 100, [
+                        [578, 400, 648, 409, 661, 426, 3, 80]
+                    ]],
+                    [539, 281, 537, 248, 534, 217, 3, 40],
+                    [546, 397, 413, 247, 328, 244, 9, 80, [
+                        [427, 286, 383, 253, 371, 205, 2, 40],
+                        [498, 345, 435, 315, 395, 330, 4, 60]
+                    ]],
+                    [546, 357, 608, 252, 678, 221, 6, 100, [
+                        [590, 293, 646, 277, 648, 271, 2, 80]
+                    ]]
+                ]] 
+            ],
+            <!--树叶茂盛程度-->
+            bloom: {
+                num: 1000,
+                width: 1080,
+                height: 650,
+            },
+            <!--底部线条-->
+            footer: {
+                width: 1200,
+                height: 8,
+                speed: 10,
+            }
+        }
+
+        var tree = new Tree(canvas[0], width, height, opts);
+        var seed = tree.seed;
+        var foot = tree.footer;
+        var hold = 1;
+
+        canvas.click(function(e) {
+            var offset = canvas.offset(), x, y;
+            x = e.pageX - offset.left;
+            y = e.pageY - offset.top;
+            if (seed.hover(x, y)) {
+                hold = 0; 
+                canvas.unbind("click");
+                canvas.unbind("mousemove");
+                canvas.removeClass('hand');
+            }
+        }).mousemove(function(e){
+            var offset = canvas.offset(), x, y;
+            x = e.pageX - offset.left;
+            y = e.pageY - offset.top;
+            canvas.toggleClass('hand', seed.hover(x, y));
+        });
+
+        var seedAnimate = eval(Jscex.compile("async", function () {
+            seed.draw();
+            while (hold) {
+                $await(Jscex.Async.sleep(10));
+            }
+            while (seed.canScale()) {
+                seed.scale(0.95);
+                $await(Jscex.Async.sleep(10));
+            }
+            while (seed.canMove()) {
+                seed.move(0, 2);
+                foot.draw();
+                $await(Jscex.Async.sleep(10));
+            }
+        }));
+
+        var growAnimate = eval(Jscex.compile("async", function () {
+            do {
+    	        tree.grow();
+                $await(Jscex.Async.sleep(10));
+            } while (tree.canGrow());
+        }));
+
+        var flowAnimate = eval(Jscex.compile("async", function () {
+            do {
+    	        tree.flower(2);
+                $await(Jscex.Async.sleep(10));
+            } while (tree.canFlower());
+        }));
+
+        var moveAnimate = eval(Jscex.compile("async", function () {
+            tree.snapshot("p1", 240, 0, 610, 680);
+            while (tree.move("p1", 500, 0)) {
+                foot.draw();
+                $await(Jscex.Async.sleep(10));
+            }
+            foot.draw();
+            tree.snapshot("p2", 500, 0, 610, 680);
+
+            // 会有闪烁不得已这样做, (＞﹏＜)
+            canvas.parent().css("background", "url(" + tree.toDataURL('image/png') + ")");
+            canvas.css("background", "#ffe");
+            $await(Jscex.Async.sleep(300));
+            canvas.css("background", "none");
+        }));
+
+        var jumpAnimate = eval(Jscex.compile("async", function () {
+            var ctx = tree.ctx;
+            while (true) {
+                tree.ctx.clearRect(0, 0, width, height);
+                tree.jump();
+                foot.draw();
+                $await(Jscex.Async.sleep(25));
+            }
+        }));
+
+        var textAnimate = eval(Jscex.compile("async", function () {
+		    var together = new Date();
+		    together.setFullYear(2009,09,20); 			//时间年月日
+		    together.setHours(0);						//小时	
+		    together.setMinutes(0);					//分钟
+		    together.setSeconds(0);					//秒前一位
+		    together.setMilliseconds(0);				//秒第二位
+
+		    $("#code").show().typewriter();
+            $("#clock-box").fadeIn(500);
+            while (true) {
+                timeElapse(together);
+                $await(Jscex.Async.sleep(1000));
+            }
+        }));
+
+        var runAsync = eval(Jscex.compile("async", function () {
+            $await(seedAnimate());
+            $await(growAnimate());
+            $await(flowAnimate());
+            $await(moveAnimate());
+
+            textAnimate().start();
+
+            $await(jumpAnimate());
+        }));
+
+        runAsync().start();
+    })();
+    </script>
+
+ <SCRIPT LANGUAGE="JavaScript">
+{
+window.onPause = function(){ 
+    rexseeDialog.toast("您现在已经后台运行了哦,再次进入会重新进入开始页面!"); 
+}
+}
+</script>
+<SCRIPT LANGUAGE="JavaScript">
+
+｛rexseeBrowser.setAllowErrorDialog(false);
+window.onDoubleClick = function()
+  rexseeBrowser.go('7.html');
+
+}
+
+ </SCRIPT>
+ <p style="text-align:center">&nbsp; </p>
+ 
+		
+		<center> <h2>  <div align="center" class="des"><a href="4.html">  <font color=#00ff00> 刷新再来一次</font> </a> </div> </h2>
+
+
+		
+		<h2>   <a href="5.html"> <font color=#ff0000>点击我进入下一页</font>
+  
+</h2> </center>
+
+</body></html>

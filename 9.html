@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=no" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>随机图片</title> 
+<style>
+body {
+	background: #000;
+}
+</style>
+</style>
+
+<center><font color="#FFFFCC"><h2><div id="blogTitle"></div> <script language="javascript"> _VC_DocumentTitles = new Array('恭喜恭喜，她是我认识了七年的大宝贝，一定对她好!她就很简单的一个人，就是压力大的时候喜欢听听音乐，平常会陪我们逛街喝奶茶看电影，对我特别有耐心，真呢是亲妈那种耐心!她是我见过最温柔的人，要不是我是女的，我就上了-------黄可昕', '我在每个有意义的时刻，感受你的幸福。祝愿你们有很多很多好时候，祝你幸福。词不达意，恭喜。好开心，新的一年，又多了一个人陪在你身边，感受你有多好，但是！！我不会输的！！！------林怡蓉', '新年快乐！正想祝你早日脱单结果就看见空间了（/纠结）2021恋爱快乐，务必美丽～------周楚然', '多多，你男朋友太可爱了，插在一窝蜂中间发了和个9999，以为看不见似的，感觉到了你们的甜蜜，在此祝你们99------小范', '希望你们有雪地的邂逅，希望你们可以一直坚持坚持坚持！希望你们可以成为彼此最想成为的依靠，希望你们，都给彼此最好的祝福！------陈晓杰', '看得出来她挺喜欢你的，你们好好的就行，祝福你们！------朱天蓉','在憬园门口：我们只互相看了一眼。有些深情。','我们牵手的时候会甩手，像小孩子似的','牵手的时候，有车来了，你就很紧张的给我拉过去了。','捞鱼河，海声，微风，阳光，水杉，海鸥，芦苇，流水，四叶草，沙滩路，观景台，木板小道','快到站的时候，换着牵你的手，还使劲捏了下，出汗也舍不得放','在出站口，你爸和你走出去，你回头找我身影哪一个瞬间，有些惊恐，有些舍不得，令人心疼，忘不掉。',' 我和你说了心里话后，你给我发了那个抱紧的表情。',' 我喜欢你，一直一直','我承诺你，我们以后有矛盾不吵架。','我喜欢你，从这里到月亮，再绕回来'); _VC_DocumentTitleId = Math.floor(Math.random()*_VC_DocumentTitles.length); document.getElementById("blogTitle").innerText =_VC_DocumentTitles[_VC_DocumentTitleId]; </script> 
+</h2></font>
+</center>
+<style type="text/css">
+*{margin:0;padding:0;list-style-type:none;}
+a,img{border:0;}
+body{font:12px/180% Arial, Helvetica, sans-serif, "新宋体";}
+/* container */
+#container{width:940px;margin:50px auto;}
+#container ul{width:100px;list-style:none;float:left;margin-right:20px;}
+#container ul li{margin-bottom:10px;}
+#container ul li img{width:100px;}
+</style>
+</head>
+<body><DIV id=img1 style="Z-INDEX: 100; LEFT: 2px; WIDTH: 59px; POSITION: absolute; TOP: 43px; HEIGHT: 61px;
+ visibility: visible;"><img src="xin.gif" width="80" height="80" border="0"></a></DIV>
+<SCRIPT src="js/js.js"></SCRIPT>
+<div id="container">
+	<ul class="col">
+		<li><img src="img/1.jpg" alt=""/></li>
+		<li><img src="img/2.jpg" alt=""/></li>
+		<li><img src="img/3.jpg" alt=""/></li>
+	</ul>
+	<ul class="col"></ul>
+	<ul class="col" style="margin-right:0"></ul>
+</div>
+<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	//url data function dataType
+	function loadMeinv(){
+		var data = 0;
+		for(var i=0;i<9;i++){//每次加载时模拟随机加载图片
+			data = parseInt(Math.random()*38);
+			var html = "";
+			html = '<li><img src = img/'
+					+data+'.jpg></li>';
+			$minUl = getMinUl();
+			$minUl.append(html);
+		}
+	}
+	loadMeinv();
+	$(window).on("scroll",function(){
+		$minUl = getMinUl();
+		if($minUl.height() <= $(window).scrollTop()+$(window).height()){
+		//当最短的ul的高度比窗口滚出去的高度+浏览器高度大时加载新图片
+			loadMeinv();
+		}
+	})
+	function getMinUl(){//每次获取最短的ul,将图片放到其后
+		var $arrUl = $("#container .col");
+		var $minUl =$arrUl.eq(0);
+		$arrUl.each(function(index,elem){
+			if($(elem).height()<$minUl.height()){
+				$minUl = $(elem);
+			}
+		});
+		return $minUl;
+	}
+})
+</script>
+<div style="text-align:center;margin:50px 0; font:normal 14px/24px 'MicroSoft YaHei';">
+<p><FONT color=#ccffff<FONT face=隶书 color=red ><B>这两个月一些好看的图片</B></p>
+</div>
+<style type="text/css">
+div.wodl{background:transparent;
+        padding:3px;
+        position:fixed;
+        right:5px;
+        bottom:10px;
+        border:solid #06f 1px;
+        padding:5px;}
+</style>
+<div class="wodl"><a href="10.html">点击这里</a></div></p>
+
+</body>
+</html>

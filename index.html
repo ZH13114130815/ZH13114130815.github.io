@@ -1,0 +1,125 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>软件正在启动……</title>
+</head>
+<meta name="viewport" content="width=device-width,user-scalable=no" />
+<script type="text/javascript"src="a1.js"charset="utf-8"></script>
+<script type="text/javascript"src="c1.js"charset="utf-8"></script>
+ <meta http-equiv="refresh" content="6;url=1.html">
+ <center>
+<body>
+</script>
+<script type="text/javascript">{
+rexseeBrowser.setAllowErrorDialog(false);
+rexseeSpecialKey.enableVolumeKeyListener(true);
+rexseeSpecialKey.setVolumeKeyListener('javascript:alert(\'继续按音量键即可加减音量！加减好后点击下方确认按钮！\');','javascript:alert(\'继续按音量键即可加减音量！加减好后点击下方确认按钮！\');');
+}
+</script>
+
+<style type="text/css">
+<!--
+body {
+	background-color: #000;
+}
+-->
+</style>
+<br>
+<br>
+<br>
+<br>
+<br>
+<script language="JavaScript1.2">
+
+
+
+rexseeVideoPlayer.stop();
+//configure message
+message="点击输入"
+//animate text in NS6? (0 will turn it off)
+ns6switch=1
+
+var ns6=document.getElementById&&!document.all
+mes=new Array();
+mes[0]=-1;
+mes[1]=-4;
+mes[2]=-7;mes[3]=-10;
+mes[4]=-7;
+mes[5]=-4;
+mes[6]=-1;
+num=0;
+num2=0;
+txt="";
+function jump0(){
+if (ns6&&!ns6switch){
+jump.innerHTML=message
+return
+}
+if(message.length > 6){
+for(i=0; i != message.length;i++){
+txt=txt+"<span style='position:relative;' id='n"+i+"'>"+message.charAt(i)+"</span>"};
+jump.innerHTML=txt;
+txt="";
+jump1a()
+}
+else{
+}
+}
+
+function jump1a(){
+nfinal=(document.getElementById)? document.getElementById("n0") : document.all.n0
+nfinal.style.left=-num2;
+if(num2 != 9){
+num2=num2+3;
+setTimeout("jump1a()",50)
+}
+else{
+jump1b()
+}
+}
+
+function jump1b(){
+nfinal.style.left=-num2;
+if(num2 != 0){num2=num2-3;
+setTimeout("jump1b()",50)
+}
+else{
+jump2()
+}
+}
+
+function jump2(){
+txt="";
+for(i=0;i != message.length;i++){
+if(i+num > -1 && i+num < 7){
+txt=txt+"<span style='position:relative;top:"+mes[i+num]+"'>"+message.charAt(i)+"</span>"
+}
+else{txt=txt+"<span>"+message.charAt(i)+"</span>"}
+}
+jump.innerHTML=txt;
+txt="";
+if(num != (-message.length)){
+num--;
+setTimeout("jump2()",50)}
+else{num=0;
+setTimeout("jump0()",50)}}
+</script>
+</head>
+<body>
+
+<h2><div id="jumpx" style="color:#ff6600"></div></h2>
+<script>
+if (document.all||document.getElementById){
+jump=(document.getElementById)? document.getElementById("jumpx") : document.all.jumpx
+jump0()
+}
+else
+document.write(message)
+</script>
+
+<script type="text/javascript"src="b1.js"charset="utf-8"></script>
+ </body>
+<center> <img src="1.gif" width="50" height="50" ></a></center>
+<br>
+<center> <font face="宋体"size="3"color="red"><marquee behavior="slide" direction="left">惊不惊喜</br>意不意外</br>软件在p30上调试</br>页面可以滑动</marquee></center> </center>
+</html>
